@@ -1,12 +1,8 @@
 const Aluno = require('../models/aluno.js');
 
 const criarAluno = async (req, res) => {
-
-  console.log('ta aqui')
   try {
-    const { nome, idade } = req.body;
-    console.log('ta aqui 2')
-    
+    const { nome, idade } = req.body;    
     if(!nome) {
       return res.status(400).json({error: "Nome é obrigatório"})
     }
@@ -14,7 +10,6 @@ const criarAluno = async (req, res) => {
       return res.status(400).json({error: "idade é obrigatório"})
     }
     const novoAluno = new Aluno({nome, idade});
-    console.log('ta aqui 3')
     await novoAluno.save();
     res.status(201).json({message: "Aluno criado com sucesso!", aluno: novoAluno});
   } catch (error) {

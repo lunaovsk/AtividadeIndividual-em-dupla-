@@ -1,4 +1,6 @@
+const Tarefa = require('../models/tarefa.js');
 const Disciplina = require('../models/disciplina.js');
+
 
 const criarDisciplina = async (req, res) => {
   try {
@@ -15,14 +17,14 @@ const criarDisciplina = async (req, res) => {
     res.status(201).json({message: "Disciplina criada com sucesso!", disciplina: novaDisciplina,
     });
   } catch (error) {
-    res.status(500).json({message: error});
-  } 
+    res.status(500).json(error);
+  }
 };
 
 const obterTodasDisciplinas = async (req, res) => {
   try {
     const disciplinas = await Disciplina.find().populate('tarefas');
-    res.status(500).json(disciplinas);
+    res.status(200).json(disciplinas);
   } catch (error) {
     res.status(500).json({message: error});
   }

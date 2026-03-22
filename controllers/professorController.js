@@ -9,9 +9,8 @@ const criarProfessor = async (req, res) => {
       idade,
       disciplinas: disciplinasIds
     });
-
-    const token = generateToken(novoProfessor, "professor");
     await novoProfessor.save();
+    const token = generateToken(novoProfessor, "professor");
     res.status(201).json({message: "Professor criado com sucesso!", professor: novoProfessor,token:token});
   } catch (error) {
     res.status(500).json({message: error});
