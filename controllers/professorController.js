@@ -1,4 +1,5 @@
 const Professor = require('../models/professor.js');
+const generateToken = require("../utils/generateToken.js");
 
 const criarProfessor = async (req, res) => {
   try {
@@ -8,8 +9,10 @@ const criarProfessor = async (req, res) => {
       idade,
       disciplinas: disciplinasIds
     });
+
+    const token = generateToken(novoProfessor, "professor");
     await novoProfessor.save();
-    res.status(201).json({message: "Professor criado com sucesso!", professor: novoProfessor});
+    res.status(201).json({message: "Professor criado com sucesso!", professor: novoProfessor,token:token});
   } catch (error) {
     res.status(500).json({message: error});
   }
