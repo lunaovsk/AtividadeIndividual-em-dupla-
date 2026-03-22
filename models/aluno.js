@@ -3,6 +3,7 @@ let mongoose = require("mongoose");
 let alunoSchema = new mongoose.Schema({
   nome: { type: String, required: true },
   idade: { type: Number, required: true, min: 15, max: 99 },
+  //relacionamento aqui 1 ALUNO PARA 1 PERFIL 
   perfil: { type: mongoose.Schema.Types.ObjectId, ref: "Perfil" },
 });
 
